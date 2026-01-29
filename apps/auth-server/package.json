@@ -5,7 +5,8 @@
         "dev": "bun run --watch src/index.ts",
         "start": "bun run src/index.ts",
         "build": "tsc --noEmit",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "db:push": "drizzle-kit push"
     },
     "dependencies": {
         "@elysiajs/cors": "^1.0.0",

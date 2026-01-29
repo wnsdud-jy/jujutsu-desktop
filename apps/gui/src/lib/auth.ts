@@ -3,7 +3,9 @@ import { persist } from 'zustand/middleware';
 
 interface AuthState {
     token: string | null;
-    setToken: (token: string) => void;
+    githubUsername: string | null;
+    githubAvatarUrl: string | null;
+    setAuth: (token: string, username: string, avatarUrl: string) => void;
     logout: () => void;
 }
 
@@ -11,11 +13,14 @@ export const useAuthStore = create<AuthState>()(
     persist(
         (set) => ({
             token: null,
-            setToken: (token) => set({ token }),
-            logout: () => set({ token: null }),
+            githubUsername: null,
+            githubAvatarUrl: null,
+            setAuth: (token, username, avatarUrl) =>
+                set({ token, githubUsername: username, githubAvatarUrl: avatarUrl }),
+            logout: () => set({ token: null, githubUsername: null, githubAvatarUrl: null }),
         }),
         {
-            name: 'auth-storage',
+            name: 'jj-auth-storage',
         }
     )
 );

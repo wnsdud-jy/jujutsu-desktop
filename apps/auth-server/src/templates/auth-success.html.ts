@@ -1,5 +1,9 @@
-export function generateAuthSuccessHTML(token: string): string {
-  const deepLink = `jujutsu://auth?token=${token}`;
+export function generateAuthSuccessHTML(token: string, username?: string, avatarUrl?: string): string {
+  const params = new URLSearchParams({ token });
+  if (username) params.set('username', username);
+  if (avatarUrl) params.set('avatar', avatarUrl);
+
+  const deepLink = `jujutsu://auth?${params.toString()}`;
 
   return `
 <!DOCTYPE html>

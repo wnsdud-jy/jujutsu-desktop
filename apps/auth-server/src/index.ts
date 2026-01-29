@@ -12,7 +12,7 @@ const app = new Elysia()
     .use(cors())
     .get('/', () => 'Auth Server is Running (Lucia + Drizzle)')
     .get('/auth/success', ({ query, set }) => {
-        const token = query.token;
+        const { token, username, avatar } = query;
 
         if (!token || typeof token !== 'string') {
             set.status = 400;
@@ -20,7 +20,7 @@ const app = new Elysia()
         }
 
         set.headers['Content-Type'] = 'text/html; charset=utf-8';
-        return generateAuthSuccessHTML(token);
+        return generateAuthSuccessHTML(token, username as string | undefined, avatar as string | undefined);
     })
     .get('/auth/github', async ({ set }) => {
         try {
@@ -89,7 +89,7 @@ const app = new Elysia()
             const session = await lucia.createSession(userId!, {});
 
             // Redirect to success page which will then deep link to app
-            const successUrl = `http://localhost:3000/auth/success?token=${session.id}`;
+            const successUrl = `http://localhost:3000/auth/success?token=${session.id}&username=${encodeURIComponent(githubUser.login)}&avatar=${encodeURIComponent(githubUser.avatar_url)}`;
             console.log('Redirecting to success page:', successUrl);
 
             return new Response(null, {
@@ -115,4 +115,5 @@ console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.por
 interface GitHubUser {
     id: number;
     login: string;
+    avatar_url: string;
 }

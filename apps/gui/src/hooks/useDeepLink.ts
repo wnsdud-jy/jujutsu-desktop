@@ -4,18 +4,27 @@ import { onOpenUrl } from '@tauri-apps/plugin-deep-link';
 import { useAuthStore } from '@/lib/auth';
 
 export const useDeepLink = () => {
-    const setToken = useAuthStore((state) => state.setToken);
+    const setAuth = useAuthStore((state) => state.setAuth);
 
     useEffect(() => {
-        const handleUrl = (url: string) => {
-            // Expected format: jujutsu://auth?token=...
+        const handleUrl = async (url: string) => {
+            // Expected format: jujutsu://auth?token=...&username=...&avatar=...
             try {
                 if (url.startsWith('jujutsu://auth')) {
                     const urlObj = new URL(url);
                     const token = urlObj.searchParams.get('token');
+                    const username = urlObj.searchParams.get('username');
+                    const avatar = urlObj.searchParams.get('avatar');
+
                     if (token) {
                         console.log('Token extracted from deep link');
-                        setToken(token);
+                        // For now, use placeholder values if GitHub info not provided
+                        // TODO: Fetch from GitHub API using token
+                        setAuth(
+                            token,
+                            username || 'User',
+                            avatar || 'https://github.com/ghost.png'
+                        );
                     }
                 }
             } catch (e) {
@@ -44,5 +53,5 @@ export const useDeepLink = () => {
         return () => {
             unlisten.then((f) => f());
         };
-    }, [setToken]);
+    }, [setAuth]);
 };
