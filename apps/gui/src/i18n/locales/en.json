@@ -1,0 +1,24 @@
+{
+    "login": {
+        "title": "Welcome to Jujutsu Desktop",
+        "subtitle": "A modern desktop client for jj-vcs",
+        "loginWithGithub": "Login with GitHub",
+        "loggingIn": "Logging in..."
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "comingSoon": "Coming Soon",
+        "underDevelopment": "The dashboard is currently under development.",
+        "stayTuned": "Stay tuned for updates!",
+        "logout": "Logout"
+    },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
+    "language": {
+        "english": "English",
+        "korean": "한국어"
+    }
+}
