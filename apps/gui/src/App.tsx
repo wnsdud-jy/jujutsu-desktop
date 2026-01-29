@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   useDeepLink(); // Initialize deep link listener
-  const { token, logout } = useAuthStore();
+  const { token } = useAuthStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
   return (
     <RootLayout>
       {token ? (
-        <Dashboard onLogout={logout} />
+        <Dashboard />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
