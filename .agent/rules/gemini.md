@@ -46,7 +46,7 @@ You must strictly adhere to the following technology stack. Do not suggest alter
 ### B. File & Folder Structure
 * Follow the "Colocation" principle. Keep related components, hooks, and utils close.
 * Use `kebab-case` for file names (e.g., `auth-provider.tsx`).
-
+*Use i18n
 ---
 
 ## 4. Response Guidelines
