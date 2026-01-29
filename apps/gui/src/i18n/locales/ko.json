@@ -12,6 +12,39 @@
         "stayTuned": "업데이트를 기대해 주세요!",
         "logout": "로그아웃"
     },
+    "settings": {
+        "title": "설정",
+        "description": "앱 기본 설정 및 계정 설정을 관리합니다.",
+        "sections": {
+            "appearance": "외관",
+            "language": "언어"
+        },
+        "theme": "테마",
+        "themeLight": "라이트",
+        "themeDark": "다크",
+        "themeSystem": "시스템",
+        "language": "언어",
+        "languageSelect": "언어 선택",
+        "button": "설정",
+        "tabs": {
+            "general": "일반",
+            "account": "계정"
+        },
+        "account": {
+            "title": "GitHub 계정",
+            "connectedVia": "GitHub으로 연결됨",
+            "viewProfile": "GitHub 프로필 보기",
+            "logout": "로그아웃",
+            "logoutConfirm": "로그아웃하시겠습니까?"
+        }
+    },
+    "profile": {
+        "githubAccount": "GitHub 계정"
+    },
+    "sidebar": {
+        "appName": "Jujutsu Desktop",
+        "appTagline": "버전 관리"
+    },
     "theme": {
         "light": "라이트",
         "dark": "다크",
