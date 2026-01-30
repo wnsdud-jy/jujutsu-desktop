@@ -50,6 +50,50 @@
         "dark": "다크",
         "system": "시스템"
     },
+    "repo": {
+        "add": "저장소 추가",
+        "addLocal": "로컬 저장소 추가",
+        "clone": "저장소 클론",
+        "github": "GitHub에서 가져오기",
+        "tab": {
+            "local": "로컬 저장소",
+            "clone": "클론",
+            "github": "GitHub"
+        },
+        "path": "경로",
+        "url": "URL",
+        "name": "이름",
+        "selectDir": "디렉토리 선택",
+        "viewOnGithub": "GitHub에서 보기",
+        "openInExplorer": "파일 탐색기에서 열기",
+        "cloning": "클론 중...",
+        "initializing": "초기화 중...",
+        "success": "성공",
+        "error": "오류",
+        "cloneSuccess": "저장소를 성공적으로 클론했습니다.",
+        "initSuccess": "저장소를 성공적으로 초기화했습니다.",
+        "invalidUrl": "유효하지 않은 URL입니다.",
+        "invalidPath": "유효하지 않은 경로입니다.",
+        "alreadyExists": "이미 목록에 있는 저장소입니다.",
+        "searchGithub": "GitHub 저장소 검색...",
+        "management": "관리",
+        "recent": "최근 저장소",
+        "noRecent": "최근 저장소가 없습니다",
+        "noReposFound": "저장소를 찾을 수 없습니다",
+        "noDescription": "설명 없음",
+        "untitledRepo": "제목 없는 저장소",
+        "clonedRepo": "클론된 저장소",
+        "notFound": {
+            "title": "저장소를 찾을 수 없습니다",
+            "description": "지정된 경로에 저장소가 존재하지 않거나 액세스할 수 없습니다.",
+            "path": "경로: {{path}}",
+            "remove": "목록에서 제거",
+            "reconnect": "다시 연결",
+            "actionRequired": "저장소를 다시 클론하거나 목록에서 삭제해 주세요.",
+            "notJJRepo": "선택한 폴더가 jj 저장소가 아닙니다.",
+            "mismatch": "기존 저장소와 일치하지 않습니다. 올바른 저장소를 선택해 주세요."
+        }
+    },
     "language": {
         "english": "English",
         "korean": "한국어"

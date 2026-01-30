@@ -50,6 +50,50 @@
         "dark": "Dark",
         "system": "System"
     },
+    "repo": {
+        "add": "Add Repository",
+        "addLocal": "Add Local Repository",
+        "clone": "Clone Repository",
+        "github": "Import from GitHub",
+        "tab": {
+            "local": "Local Repository",
+            "clone": "Clone",
+            "github": "GitHub"
+        },
+        "path": "Path",
+        "url": "URL",
+        "name": "Name",
+        "selectDir": "Select Directory",
+        "viewOnGithub": "View on GitHub",
+        "openInExplorer": "Open in File Explorer",
+        "cloning": "Cloning...",
+        "initializing": "Initializing...",
+        "success": "Success",
+        "error": "Error",
+        "cloneSuccess": "Successfully cloned the repository.",
+        "initSuccess": "Successfully initialized the repository.",
+        "invalidUrl": "Invalid URL.",
+        "invalidPath": "Invalid path.",
+        "alreadyExists": "This repository is already in the list.",
+        "searchGithub": "Search GitHub repositories...",
+        "management": "Management",
+        "recent": "Recent Repositories",
+        "noRecent": "No recent repositories",
+        "noReposFound": "No repositories found",
+        "noDescription": "No description",
+        "untitledRepo": "Untitled Repo",
+        "clonedRepo": "Cloned Repo",
+        "notFound": {
+            "title": "Repository Not Found",
+            "description": "The repository does not exist at the specified path or is inaccessible.",
+            "path": "Path: {{path}}",
+            "remove": "Remove from List",
+            "reconnect": "Reconnect",
+            "actionRequired": "Please re-clone the repository or remove it from the list.",
+            "notJJRepo": "The selected folder is not a jj repository.",
+            "mismatch": "The repository does not match the original. Please select the correct repository."
+        }
+    },
     "language": {
         "english": "English",
         "korean": "한국어"

@@ -1,34 +1,22 @@
 import { ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 import { SettingsModal } from '@/components/features/settings/SettingsModal';
 import { ProfileCard } from '@/components/features/profile/ProfileCard';
+import { RepoSelector } from '@/components/features/repo/RepoSelector';
 
 interface SidebarProps {
     children?: ReactNode;
 }
 
 export function Sidebar({ children }: SidebarProps) {
-    const { t } = useTranslation();
-
     return (
         <aside className="w-64 border-r border-border bg-background flex flex-col h-screen relative">
-            {/* Top: Logo/Brand */}
-            <div className="p-4 border-b border-border bg-background/50 backdrop-blur-sm z-10">
-                <div className="flex items-center gap-2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary font-bold text-primary-foreground shadow-inner">
-                        <span className="text-lg">JJ</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <h1 className="text-sm font-bold tracking-tight">{t('sidebar.appName')}</h1>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold opacity-80">
-                            {t('sidebar.appTagline')}
-                        </p>
-                    </div>
-                </div>
+            {/* Top: Repo Selector (Integrated header) */}
+            <div className="p-3 border-b border-border bg-background/50 backdrop-blur-sm z-10">
+                <RepoSelector />
             </div>
 
             {/* Middle: Content (navigation will go here) */}
-            <div className="flex-1 overflow-y-auto p-3 overflow-x-hidden pb-24">
+            <div className="flex-1 overflow-y-auto p-3 overflow-x-hidden pb-24 space-y-4">
                 {children}
             </div>
 

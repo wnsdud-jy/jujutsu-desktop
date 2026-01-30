@@ -6,3 +6,5 @@ export interface User {
     email?: string;
     accessToken?: string;
 }
+
+export * from './repo';

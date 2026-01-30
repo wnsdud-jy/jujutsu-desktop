@@ -25,7 +25,7 @@ const app = new Elysia()
     .get('/auth/github', async ({ set }) => {
         try {
             const state = generateState();
-            const url = await github.createAuthorizationURL(state, ['read:user', 'user:email']);
+            const url = await github.createAuthorizationURL(state, ['read:user', 'user:email', 'repo']);
 
             set.headers['Set-Cookie'] = serializeCookie('github_oauth_state', state, {
                 httpOnly: true,
@@ -83,14 +83,18 @@ const app = new Elysia()
                     id: userId,
                     githubId: githubUser.id,
                     username: githubUser.login,
+                    accessToken: tokens.accessToken(),
                 });
+            } else {
+                await db.update(userTable)
+                    .set({ accessToken: tokens.accessToken() })
+                    .where(eq(userTable.id, userId));
             }
 
             const session = await lucia.createSession(userId!, {});
 
             // Redirect to success page which will then deep link to app
             const successUrl = `http://localhost:3000/auth/success?token=${session.id}&username=${encodeURIComponent(githubUser.login)}&avatar=${encodeURIComponent(githubUser.avatar_url)}`;
-            console.log('Redirecting to success page:', successUrl);
 
             return new Response(null, {
                 status: 302,
@@ -107,6 +111,42 @@ const app = new Elysia()
             set.status = 500;
             return 'Internal Server Error';
         }
+    })
+    .get('/github/repos', async ({ request, set }) => {
+        const authHeader = request.headers.get('Authorization');
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            set.status = 401;
+            return 'Unauthorized';
+        }
+
+        const sessionId = authHeader.split(' ')[1];
+        const { session, user } = await lucia.validateSession(sessionId);
+
+        if (!session || !user) {
+            set.status = 401;
+            return 'Invalid session';
+        }
+
+        const [dbUser] = await db.select().from(userTable).where(eq(userTable.id, user.id));
+
+        if (!dbUser || !dbUser.accessToken) {
+            set.status = 401;
+            return 'No access token found';
+        }
+
+        const reposResponse = await fetch('https://api.github.com/user/repos?sort=updated&per_page=100', {
+            headers: {
+                'Authorization': `Bearer ${dbUser.accessToken}`,
+                'User-Agent': 'Jujutsu-Desktop'
+            }
+        });
+
+        if (!reposResponse.ok) {
+            set.status = reposResponse.status;
+            return await reposResponse.text();
+        }
+
+        return await reposResponse.json();
     })
     .listen(3000);
 
