@@ -22,8 +22,12 @@ export function Dashboard() {
             try {
                 const exists = await invoke<boolean>('check_path_exists', { path: currentRepo.path });
                 setIsCurrentRepoValid(exists);
+
+                if (exists) {
+                    await invoke('watch_repo', { path: currentRepo.path });
+                }
             } catch (error) {
-                console.error('Failed to check path:', error);
+                console.error('Failed to check path or start watcher:', error);
                 setIsCurrentRepoValid(false);
             } finally {
                 setChecking(false);

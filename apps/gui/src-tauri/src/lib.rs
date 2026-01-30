@@ -36,6 +36,26 @@ pub struct ChangeSet {
     files: Vec<ChangedFile>,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Commit {
+    id: String,
+    #[serde(rename = "changeId")]
+    change_id: String,
+    author: String,
+    email: String,
+    date: String,
+    description: String,
+    #[serde(rename = "isCurrent")]
+    is_current: bool,
+    #[serde(rename = "isImmutable")]
+    is_immutable: bool,
+    #[serde(rename = "isConflicted")]
+    is_conflicted: bool,
+    #[serde(rename = "parentIds")]
+    parent_ids: Vec<String>,
+    bookmarks: Vec<String>,
+}
+
 #[tauri::command]
 async fn jj_git_clone(url: String, path: String) -> Result<String, String> {
     let output = Command::new("jj")
@@ -456,6 +476,12 @@ pub fn run() {
             jj_describe,
             watch_repo
         ])
+        .manage(AppState {
+            watcher_state: Mutex::new(WatcherState {
+                watcher: None,
+                current_path: None,
+            }),
+        })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
