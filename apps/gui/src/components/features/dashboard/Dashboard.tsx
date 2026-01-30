@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useRepoStore } from '@/lib/repo';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { RepoNotFoundView } from '@/components/features/repo/RepoNotFoundView';
 import { invoke } from '@tauri-apps/api/core';
 import { Loader2 } from 'lucide-react';
+import { OperationLogView } from '@/components/features/repo/components/OperationLogView';
+import { ChangesView } from '@/components/features/repo/components/ChangesView';
+import { CommitStackView } from '@/components/features/repo/components/CommitStackView';
+import { SidebarNav, TabId } from '@/components/layout/SidebarNav';
 
 export function Dashboard() {
-    const { t } = useTranslation();
     const { currentRepo, isCurrentRepoValid, setIsCurrentRepoValid } = useRepoStore();
     const [checking, setChecking] = useState(false);
+    const [activeTab, setActiveTab] = useState<TabId>('history');
 
     useEffect(() => {
         const checkPath = async () => {
@@ -33,10 +36,7 @@ export function Dashboard() {
     return (
         <div className="flex h-screen w-full bg-background overflow-hidden">
             <Sidebar>
-                {/* Sidebar Navigation items can be added here */}
-                <div className="flex flex-col gap-1">
-                    {/* Placeholder for future nav items */}
-                </div>
+                <SidebarNav activeTab={activeTab} onTabChange={setActiveTab} />
             </Sidebar>
 
             <main className="flex-1 relative overflow-hidden flex flex-col">
@@ -47,14 +47,10 @@ export function Dashboard() {
                 ) : !isCurrentRepoValid ? (
                     <RepoNotFoundView />
                 ) : (
-                    <div className="flex-1 flex flex-col items-center justify-center p-8 text-center space-y-4">
-                        <h1 className="text-4xl font-bold tracking-tight">{t('dashboard.title')}</h1>
-                        <div className="max-w-md space-y-2">
-                            <p className="text-xl text-muted-foreground">{t('dashboard.comingSoon')}</p>
-                            <p className="text-muted-foreground italicOpacity-70">
-                                {t('dashboard.underDevelopment')}
-                            </p>
-                        </div>
+                    <div className="flex-1 flex flex-col overflow-hidden">
+                        {activeTab === 'history' && <CommitStackView />}
+                        {activeTab === 'changes' && <ChangesView />}
+                        {activeTab === 'operations' && <OperationLogView />}
                     </div>
                 )}
             </main>

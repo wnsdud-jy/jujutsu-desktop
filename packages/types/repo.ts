@@ -20,3 +20,39 @@ export interface GithubRepository {
         avatar_url: string;
     };
 }
+export interface Operation {
+    id: string;
+    time: string;
+    user: string;
+    description: string;
+}
+
+export type FileStatus = 'Added' | 'Modified' | 'Removed' | 'Conflicted';
+
+export interface ChangedFile {
+    path: string;
+    status: FileStatus;
+}
+
+export interface ChangeSet {
+    changeId: string;
+    files: ChangedFile[];
+}
+
+export interface Commit {
+    id: string;
+    changeId: string;
+    author: string;
+    email: string;
+    date: string;
+    description: string;
+    isCurrent: boolean;
+    isImmutable: boolean;
+    isConflicted: boolean;
+    parentIds: string[];
+    bookmarks: string[];
+}
+
+export interface LogEntry {
+    commits: Commit[];
+}

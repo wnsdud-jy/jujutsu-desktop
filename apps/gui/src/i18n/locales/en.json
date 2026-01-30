@@ -43,7 +43,12 @@
     },
     "sidebar": {
         "appName": "Jujutsu Desktop",
-        "appTagline": "Version Control"
+        "appTagline": "Version Control",
+        "nav": {
+            "operations": "Operation Log",
+            "history": "Commit Log",
+            "changes": "Changes"
+        }
     },
     "theme": {
         "light": "Light",
@@ -93,6 +98,43 @@
             "notJJRepo": "The selected folder is not a jj repository.",
             "mismatch": "The repository does not match the original. Please select the correct repository."
         }
+    },
+    "operations": {
+        "title": "Operation Log",
+        "description": "Chronological history of operations in this repository. You can undo to a specific state.",
+        "undo": "Undo to this state",
+        "undoConfirm": "Are you sure you want to restore the repository to this operation?",
+        "undoSuccess": "Successfully undid the operation.",
+        "noHistory": "No operation history found.",
+        "id": "ID",
+        "time": "Time",
+        "user": "User",
+        "command": "Command"
+    },
+    "log": {
+        "stackTitle": "Commit Stack",
+        "noHistory": "No commit history."
+    },
+    "changes": {
+        "title": "Changes",
+        "noChanges": "No changes",
+        "changedFiles": "Changed Files",
+        "diff": "Diff",
+        "currentCommit": "Current Commit",
+        "status": {
+            "Added": "Added",
+            "Modified": "Modified",
+            "Removed": "Removed",
+            "Conflicted": "Conflicted"
+        },
+        "refreshing": "Refreshing...",
+        "selectFile": "Select a file to view diff"
+    },
+    "actions": {
+        "undoSuccess": "Operation undone successfully (jj undo).",
+        "newSuccess": "New commit created successfully (jj new).",
+        "absorbSuccess": "Changes absorbed successfully (jj absorb).",
+        "describeSuccess": "Description updated successfully (jj describe)."
     },
     "language": {
         "english": "English",
