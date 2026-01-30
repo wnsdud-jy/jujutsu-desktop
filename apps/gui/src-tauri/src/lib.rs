@@ -78,7 +78,7 @@ async fn jj_init_repo(path: String) -> Result<String, String> {
     let output = Command::new("jj")
         .arg("git")
         .arg("init")
-        .arg("--colocated")
+        .arg("--colocate")
         .current_dir(&path)
         .output()
         .map_err(|e| e.to_string())?;
