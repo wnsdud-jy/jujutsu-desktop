@@ -25,3 +25,4 @@ dist-ssr
 .turbo
 sqlite.db
 .env
+.jj
