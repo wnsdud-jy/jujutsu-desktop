@@ -45,7 +45,8 @@
         "appName": "Jujutsu Desktop",
         "appTagline": "Version Control",
         "nav": {
-            "log": "Operation Log",
+            "operations": "Operation Log",
+            "history": "Commit Log",
             "changes": "Changes"
         }
     },
@@ -110,6 +111,10 @@
         "user": "User",
         "command": "Command"
     },
+    "log": {
+        "stackTitle": "Commit Stack",
+        "noHistory": "No commit history."
+    },
     "changes": {
         "title": "Changes",
         "noChanges": "No changes",
@@ -124,6 +129,12 @@
         },
         "refreshing": "Refreshing...",
         "selectFile": "Select a file to view diff"
+    },
+    "actions": {
+        "undoSuccess": "Operation undone successfully (jj undo).",
+        "newSuccess": "New commit created successfully (jj new).",
+        "absorbSuccess": "Changes absorbed successfully (jj absorb).",
+        "describeSuccess": "Description updated successfully (jj describe)."
     },
     "language": {
         "english": "English",

@@ -45,7 +45,8 @@
         "appName": "Jujutsu Desktop",
         "appTagline": "버전 관리",
         "nav": {
-            "log": "작업 기록",
+            "operations": "작업 기록",
+            "history": "커밋 로그",
             "changes": "변경 사항"
         }
     },
@@ -110,6 +111,10 @@
         "user": "사용자",
         "command": "명령어"
     },
+    "log": {
+        "stackTitle": "커밋 스택",
+        "noHistory": "커밋 내역이 없습니다."
+    },
     "changes": {
         "title": "변경 사항",
         "noChanges": "변경 사항이 없습니다",
@@ -124,6 +129,12 @@
         },
         "refreshing": "새로고침 중...",
         "selectFile": "차이점을 보려면 파일을 선택하세요"
+    },
+    "actions": {
+        "undoSuccess": "작업이 취소되었습니다 (jj undo).",
+        "newSuccess": "새 커밋이 생성되었습니다 (jj new).",
+        "absorbSuccess": "변경 사항이 흡수되었습니다 (jj absorb).",
+        "describeSuccess": "설명이 업데이트되었습니다 (jj describe)."
     },
     "language": {
         "english": "English",

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { History, FileCode } from 'lucide-react';
+import { FileCode, Activity, GitCommit } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export type TabId = 'log' | 'changes';
+export type TabId = 'operations' | 'history' | 'changes';
 
 interface SidebarNavProps {
     activeTab: TabId;
@@ -14,14 +14,19 @@ export function SidebarNav({ activeTab, onTabChange }: SidebarNavProps) {
 
     const items = [
         {
-            id: 'log' as TabId,
-            label: t('sidebar.nav.log'),
-            icon: History
+            id: 'history' as TabId,
+            label: t('sidebar.nav.history'),
+            icon: GitCommit
         },
         {
             id: 'changes' as TabId,
             label: t('sidebar.nav.changes'),
             icon: FileCode
+        },
+        {
+            id: 'operations' as TabId,
+            label: t('sidebar.nav.operations'),
+            icon: Activity
         }
     ];
 

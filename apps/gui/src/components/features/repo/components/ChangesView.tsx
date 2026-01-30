@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from 'react';
+import { listen } from '@tauri-apps/api/event';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, RefreshCw } from 'lucide-react';
@@ -35,15 +36,17 @@ export function ChangesView() {
     useEffect(() => {
         refresh();
 
-        // Auto-refresh every 30 seconds
-        const interval = setInterval(refresh, 30000);
+        // Listen for real-time changes from Rust backend
+        const unlisten = listen('repo-changed', () => {
+            refresh();
+        });
 
-        // Refresh on window focus
+        // Refresh on window focus as a fallback
         const handleFocus = () => refresh();
         window.addEventListener('focus', handleFocus);
 
         return () => {
-            clearInterval(interval);
+            unlisten.then(f => f());
             window.removeEventListener('focus', handleFocus);
         };
     }, [refresh]);
